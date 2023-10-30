@@ -1,2 +1,4 @@
 virenv
 */__pycache__
+*/_plots
+recovery.py

@@ -35,7 +35,7 @@ def fundamentals(symbols,key=None):
     all_results = {}
     
     for symbol in symbols:
-        results = {}
+        results = []
         
         urls = [f'https://www.screener.in/company/{symbol}/', f'https://www.screener.in/company/{symbol}/consolidated/']
         response = get_valid_response(urls)
@@ -61,24 +61,26 @@ def fundamentals(symbols,key=None):
                 individual_row_data = [data.text.strip() for data in row_data]
                 lenght = len(df)
                 df.loc[lenght]=individual_row_data
-                
-                
-                
-            df.insert(0, 'Symbol', symbol)
-            df = df.rename(columns={df.columns[1]: 'Particulars'})
-            results[keys[i]] = df
+                df = df.rename(columns={df.columns[0]: 'Particulars'})
+                data_df = df[df['Particulars'] != 'Raw PDF']
+                data_df.loc[:, 'Particulars'] = data_df['Particulars'].str.replace(' ', '').str.replace('+', '')
+            results.append(data_df)
+        #     df.insert(0, 'Symbol', symbol)
+        #     df = df.rename(columns={df.columns[1]: 'Particulars'})
+        #     df.columns = df.columns.str.strip('+')
+        #     results[keys[i]] = df
         
-        all_results[symbol] = results
+        # all_results[symbol] = results
+    return results[0]
             
             
-            
-    if key is not None:
-        selected_results = [{symbol: results[keys] for symbol, results in all_results.items() if keys in results} for keys in key]
-        return selected_results
+    # if key is not None:
+    #     selected_results = [{symbol: results[keys] for symbol, results in all_results.items() if keys in results} for keys in key]
+    #     return selected_results[0]
         
         
-    else:
-        return None
+    # else:
+    #     return None
     
     
 ####### --- Sector and Industry -- #########
