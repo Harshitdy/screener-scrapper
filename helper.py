@@ -71,7 +71,7 @@ def fundamentals(symbols,key=None):
         #     results[keys[i]] = df
         
         # all_results[symbol] = results
-    return results[0]
+    return results
             
             
     # if key is not None:
