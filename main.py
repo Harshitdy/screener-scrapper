@@ -11,7 +11,7 @@ company_name = input("Enter the symbol => ")
 symbols = [company_name]
 key=['Quarterly Results', 'Profit & Loss']
 
-data = fundamentals(symbols = symbols, key= key)
+data, title = fundamentals(symbols = symbols, key= key)
 
 plots = ['QoQ', 'YoY']
 
@@ -19,7 +19,7 @@ first = True
 
 for dfs, plot in zip(data, plots):
     # Create a directory for the company's plots (if it doesn't exist)
-    plot_folder = f"{company_name.lower()}_{plot}_plots"
+    plot_folder = f"{title.lower()}_{plot}_plots"
     os.makedirs(plot_folder, exist_ok=True)
 
     transposed_data = dfs.transpose()

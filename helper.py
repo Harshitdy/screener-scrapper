@@ -23,7 +23,7 @@ def get_valid_response(urls):
 ##### ------ Fundamentals -------#######
 
 
-def fundamentals(symbols,key=None):
+def fundamentals(symbols, key=None):
     
     if not isinstance(symbols, list):
         symbols = [symbols]  # Convert a single symbol to a list
@@ -32,7 +32,6 @@ def fundamentals(symbols,key=None):
             'Cash Flows', 'Ratios', 'Shareholding Pattern q', 
             'Shareholding Pattern y']
     
-    all_results = {}
     
     for symbol in symbols:
         results = []
@@ -44,9 +43,9 @@ def fundamentals(symbols,key=None):
          
 
         soup = BeautifulSoup(response.text,'html.parser')
+        title = "_".join(soup.title.string.split()[:2])
 
         for i, table in enumerate(soup.find_all('table', class_='data-table')):
-
 
             column_header_raw = table.find_all('th')
 
@@ -65,13 +64,7 @@ def fundamentals(symbols,key=None):
                 data_df = df[df['Particulars'] != 'Raw PDF']
                 data_df.loc[:, 'Particulars'] = data_df['Particulars'].str.replace(' ', '').str.replace('+', '')
             results.append(data_df)
-        #     df.insert(0, 'Symbol', symbol)
-        #     df = df.rename(columns={df.columns[1]: 'Particulars'})
-        #     df.columns = df.columns.str.strip('+')
-        #     results[keys[i]] = df
-        
-        # all_results[symbol] = results
-    return results
+    return results[:2], title
             
             
     # if key is not None:
