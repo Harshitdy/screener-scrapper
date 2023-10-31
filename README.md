@@ -1,4 +1,4 @@
-v# Description
+# Description
 
 this repository contains code to scrape the screener.in website and plots the scraped data
 
