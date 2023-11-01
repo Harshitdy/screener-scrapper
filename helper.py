@@ -28,9 +28,9 @@ def fundamentals(symbols, key=None):
     if not isinstance(symbols, list):
         symbols = [symbols]  # Convert a single symbol to a list
    
-    keys = ['Quarterly Results', 'Profit & Loss','Balance Sheet', 
-            'Cash Flows', 'Ratios', 'Shareholding Pattern q', 
-            'Shareholding Pattern y']
+    # keys = ['Quarterly Results', 'Profit & Loss','Balance Sheet', 
+    #         'Cash Flows', 'Ratios', 'Shareholding Pattern q', 
+    #         'Shareholding Pattern y']
     
     
     for symbol in symbols:
