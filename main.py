@@ -41,9 +41,14 @@ for dfs, plot in zip(data, plots):
     for column in percentage_columns:
         transposed_data[column] = transposed_data[column].str.replace('%', '').str.replace(',', '')
 
+    try:
+        # Convert percentage columns to float
+        transposed_data[percentage_columns] = transposed_data[percentage_columns].astype(float)
+    except:
+        transposed_data[percentage_columns] = transposed_data[percentage_columns].apply(lambda x: pd.to_numeric(x.str.strip(), errors='coerce'))
 
-    # Convert percentage columns to float
-    transposed_data[percentage_columns] = transposed_data[percentage_columns].astype(float)
+        # Convert the columns to float, replacing NaN with None
+        transposed_data[percentage_columns] = transposed_data[percentage_columns].astype(float).replace({np.nan: None})
 
 
     # Iterate through the columns and create histograms
