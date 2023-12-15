@@ -27,11 +27,6 @@ def fundamentals(symbols, key=None):
     
     if not isinstance(symbols, list):
         symbols = [symbols]  # Convert a single symbol to a list
-   
-    # keys = ['Quarterly Results', 'Profit & Loss','Balance Sheet', 
-    #         'Cash Flows', 'Ratios', 'Shareholding Pattern q', 
-    #         'Shareholding Pattern y']
-    
     
     for symbol in symbols:
         results = []
@@ -65,20 +60,12 @@ def fundamentals(symbols, key=None):
                 data_df.loc[:, 'Particulars'] = data_df['Particulars'].str.replace(' ', '').str.replace('+', '')
             results.append(data_df)
     return results[:6], title
-            
-            
-    # if key is not None:
-    #     selected_results = [{symbol: results[keys] for symbol, results in all_results.items() if keys in results} for keys in key]
-    #     return selected_results[0]
-        
-        
-    # else:
-    #     return None
+
     
     
 ####### --- Sector and Industry -- #########
 
-def Sector(symbols):
+def sector(symbols):
     
     if not isinstance(symbols, list):
         symbols = [symbols]  # Convert a single symbol to a list
