@@ -64,7 +64,7 @@ def fundamentals(symbols, key=None):
                 data_df = df[df['Particulars'] != 'Raw PDF']
                 data_df.loc[:, 'Particulars'] = data_df['Particulars'].str.replace(' ', '').str.replace('+', '')
             results.append(data_df)
-    return results[:2], title
+    return results[:6], title
             
             
     # if key is not None:
